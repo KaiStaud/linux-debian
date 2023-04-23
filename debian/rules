@@ -59,7 +59,6 @@ override_dh_auto_install:
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
 	$(MAKE) $(MAKE_OPTS) zinstall
 	$(MAKE) $(MAKE_OPTS) headers_install
-	if test arm = arm -o arm = arm64; then 		make $(MAKE_OPTS) dtbs_install; 	fi
 	# Build kernel header package
 #	rm -f "$(TMP_DIR)/lib/modules/$(REL)/build" "$(TMP_DIR)/lib/modules/$(REL)/source"
 	#find . -name Makefile\* -o -name Kconfig\* -o -name \*.pl > $(DEB_DIR)/hdrsrcfiles
