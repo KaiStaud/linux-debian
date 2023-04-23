@@ -53,13 +53,11 @@ override_dh_auto_configure:
 
 override_dh_auto_build:
 	rm -rf include/config
-	$(MAKE) $(MAKE_OPTS) all modules
+	$(MAKE) $(MAKE_OPTS) all 
 
 override_dh_auto_install:
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
 	$(MAKE) $(MAKE_OPTS) zinstall
-	$(MAKE) $(MAKE_OPTS) INSTALL_MOD_STRIP=1 modules_install
-	if test $(in_kernel_firmware) -eq 1; then 		$(MAKE) $(MAKE_OPTS) firmware_install; 	fi
 	$(MAKE) $(MAKE_OPTS) headers_install
 	if test arm = arm -o arm = arm64; then 		make $(MAKE_OPTS) dtbs_install; 	fi
 	# Build kernel header package
