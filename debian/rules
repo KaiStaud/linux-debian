@@ -53,8 +53,7 @@ override_dh_auto_configure:
 
 override_dh_auto_build:
 	rm -rf include/config
-	$(MAKE) $(MAKE_OPTS) zImage modules
-	if test arm = arm -o arm = arm64; then 		make -j`nproc` $(MAKE_OPTS) dtbs; 	fi
+	$(MAKE) $(MAKE_OPTS) all modules
 
 override_dh_auto_install:
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
