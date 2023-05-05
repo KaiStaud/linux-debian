@@ -16,4 +16,59 @@ clean:
 	rm -rf debian/files debian/linux-*
 	$(MAKE) clean
 
+<<<<<<< HEAD
 binary: binary-arch
+=======
+ifeq ($(in_kernel_firmware), 1)
+MAKE_OPTS += INSTALL_FW_PATH=$(FW_PATH)
+endif
+
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+    NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+    MAKE_OPTS += -j$(NUMJOBS)
+endif
+
+#export DH_VERBOSE=1
+
+override_dh_auto_clean:
+	mkdir -p debian/build
+	rm -f debian/files
+	rm -rf debian/tmp
+	$(MAKE) $(MAKE_OPTS) clean
+
+override_dh_auto_configure:
+	mkdir -p debian/build
+	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig
+
+override_dh_auto_build:
+	rm -rf include/config
+	$(MAKE) $(MAKE_OPTS)  
+
+override_dh_auto_install:
+	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
+	$(MAKE) $(MAKE_OPTS) 
+	$(MAKE) $(MAKE_OPTS) headers_install modules_install
+	# Build kernel header package
+	rm -f "$(TMP_DIR)/lib/modules/$(REL)/build" "$(TMP_DIR)/lib/modules/$(REL)/source"
+	find . -name Makefile\* -o -name Kconfig\* -o -name \*.pl > $(DEB_DIR)/hdrsrcfiles
+	find arch/*/include include scripts -type f >> $(DEB_DIR)/hdrsrcfiles
+	find arch/$(SRCARCH) -name module.lds -o -name Kbuild.platforms -o -name Platform >> $(DEB_DIR)/hdrsrcfiles
+	find `find arch/$(SRCARCH) -name include -o -name scripts -type d` -type f >> $(DEB_DIR)/hdrsrcfiles
+	if grep -q '^CONFIG_STACK_VALIDATION=y' $(BUILD_DIR)/.config ; then 		(cd $(BUILD_DIR); find tools/objtool -type f -executable) >> $(DEB_DIR)/hdrobjfiles ; 	fi
+	(cd $(BUILD_DIR); find arch/$(SRCARCH)/include Module.symvers include scripts -type f) >> $(DEB_DIR)/hdrobjfiles
+	if grep -q '^CONFIG_GCC_PLUGINS=y' $(BUILD_DIR)/.config ; then 			(cd $(BUILD_DIR); find scripts/gcc-plugins -name \*.so -o -name gcc-common.h) >> $(DEB_DIR)/hdrobjfiles ; 	fi
+	mkdir -p "$(KERNEL_HDR_PATH)"
+	tar -c -f - -T - < "$(DEB_DIR)/hdrsrcfiles" | (cd $(KERNEL_HDR_PATH); tar -xf -)
+	(cd $(BUILD_DIR); tar -c -f - -T -) < "$(DEB_DIR)/hdrobjfiles" | (cd $(KERNEL_HDR_PATH); tar -xf -)
+	(cd $(BUILD_DIR); cp $(BUILD_DIR)/.config $(KERNEL_HDR_PATH)/.config) # copy .config manually to be where it's expected to be
+	ln -sf "/usr/src/linux-headers-$(REL)" "$(TMP_DIR)/lib/modules/$(REL)/build"
+	rm -f "$(DEB_DIR)/hdrsrcfiles" "$(DEB_DIR)/hdrobjfiles"
+
+override_dh_install:
+	dh_install -X/scripts/
+
+override_dh_auto_test:
+
+%:
+	dh $@
+>>>>>>> 55915bdbf48b1fcf0b72cc642e38d1288f8c4899
