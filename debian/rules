@@ -1,19 +1,6 @@
 #!/usr/bin/make -f
+%:
+	dh $@
 
-srctree ?= .
-
-build-indep:
-build-arch:
-	$(MAKE) KERNELRELEASE=5.10.178 ARCH=arm 	KBUILD_BUILD_VERSION=1 -f $(srctree)/Makefile
-
-build: build-arch
-
-binary-indep:
-binary-arch: build-arch
-	$(MAKE) KERNELRELEASE=5.10.178 ARCH=arm 	KBUILD_BUILD_VERSION=1 -f $(srctree)/Makefile intdeb-pkg
-
-clean:
-	rm -rf debian/files debian/linux-*
-	$(MAKE) clean
-
-binary: binary-arch
+override_dh_auto_configure:
+	make stm32mp157a-dk1_defconfig
