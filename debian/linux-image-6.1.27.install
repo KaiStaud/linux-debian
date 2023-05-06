@@ -1,4 +1,0 @@
-./boot/*
-./lib/modules/*/modules.*
-./lib/modules/*/kernel/*
-./usr/lib/*
