@@ -2,7 +2,7 @@ Source: linux-stm32
 Section: unknown
 Priority: optional
 Maintainer: kai <>
-Build-Depends: debhelper-compat (= 12),flex,bison,git
+Build-Depends: debhelper-compat (= 12),flex,bison,git,bc
 Standards-Version: 4.5.0
 Homepage: <insert the upstream URL, if relevant>
 
