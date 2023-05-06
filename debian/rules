@@ -45,10 +45,10 @@ override_dh_configure:
 override_dh_auto_install:
 override_dh_auto_build:
 	mkdir -p debian/build
-	make stm32mp157a-dk1_defconfig
 #override_dh_auto_build:
 #	rm -rf include/config
-	$(MAKE) $(MAKE_OPTS)  
+	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig 
+	$(MAKE) $(MAKE_OPTS)
 #override_dh_auto_install:
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
 	echo "------------Make All----------"
