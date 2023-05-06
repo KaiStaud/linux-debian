@@ -48,8 +48,10 @@ override_dh_auto_build:
 #override_dh_auto_build:
 #	rm -rf include/config
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
-	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig all #modules 
-#	$(MAKE) $(MAKE OPTS)
+	echo "---Make defconfig----"
+	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig #modules 
+	echo "-----Make---"
+	$(MAKE) $(MAKE OPTS)
 #override_dh_auto_install:
 #	echo "-----------MAKE HEADERS InsTALl------"
 #	$(MAKE) $(MAKE_OPTS) headers_install
