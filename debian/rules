@@ -70,5 +70,5 @@ override_dh_auto_install:
 #	dh_auto_install -- prefix=/usr
 
 override_dh_install:
-echo "-------make install------------"
+	echo "-------make install------------"
 #	dh_install --list-missing -X.pyc -X.pyo
