@@ -7,7 +7,7 @@
 clean:
 	echo "No clean please"
 	echo "Work-Dir=$(PWD)"
-	git config --global --add safe.directory /var/cache/elbe/
+	git config --global --add safe.directory $(PWD)
 distclean:
 	echo "NO distclean"
 override_dh_clean:
