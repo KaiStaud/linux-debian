@@ -7,6 +7,8 @@
 
 override_dh_clean:
 	echo "Skipping clean"
+override_dh_distclean:
+	echo "Skipping distclean"
 override_dh_configure:
 	echo "tEst"
 	make stm32mp157a-dk1_defconfig
