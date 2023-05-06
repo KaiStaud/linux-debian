@@ -44,7 +44,7 @@ override_dh_distclean:
 override_dh_configure:
 override_dh_auto_install:
 override_dh_auto_build:
-	mkdir -p debian/build
+#	mkdir -p debian/build
 #override_dh_auto_build:
 #	rm -rf include/config
 	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig all modules
