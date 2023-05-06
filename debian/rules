@@ -41,6 +41,11 @@ override_dh_configure:
 	echo "tEst"
 	make stm32mp157a-dk1_defconfig
 override_dh_build:
+	$(MAKE) $(MAKE_OPTS)  
+override_dh_auto_install:
+	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
+	$(MAKE) $(MAKE_OPTS) 
+	$(MAKE) $(MAKE_OPTS) headers_install
 	echo "Build kernel header package"
 	rm -f "$(TMP_DIR)/lib/modules/$(REL)/build" "$(TMP_DIR)/lib/modules/$(REL)/source"
 	find . -name Makefile\* -o -name Kconfig\* -o -name \*.pl > $(DEB_DIR)/hdrsrcfiles
@@ -62,5 +67,5 @@ override_dh_build:
 #override_dh_auto_install:
 #	dh_auto_install -- prefix=/usr
 
-#override_dh_install:
+override_dh_install:
 #	dh_install --list-missing -X.pyc -X.pyo
