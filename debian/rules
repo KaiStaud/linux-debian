@@ -6,6 +6,7 @@
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 clean:
 	echo "No clean please"
+	git config --global --add safe.directory /var/cache/elbe/
 distclean:
 	echo "NO distclean"
 override_dh_clean:
