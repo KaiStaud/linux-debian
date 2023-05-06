@@ -46,7 +46,7 @@ override_dh_auto_install:
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
 	echo "------------Make All----------"
 	$(MAKE) $(MAKE_OPTS)
- 	echo "-----------MAKE HEADERS InsTALl------"
+	echo "-----------MAKE HEADERS InsTALl------"
 	$(MAKE) $(MAKE_OPTS) headers_install
 	echo "Build kernel header package"
 	rm -f "$(TMP_DIR)/lib/modules/$(REL)/build" "$(TMP_DIR)/lib/modules/$(REL)/source"
