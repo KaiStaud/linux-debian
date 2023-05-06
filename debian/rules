@@ -40,7 +40,7 @@ override_dh_distclean:
 override_dh_configure:
 	echo "tEst"
 	make stm32mp157a-dk1_defconfig
-override_dh_build:
+override_dh_auto_build:
 	$(MAKE) $(MAKE_OPTS)  
 override_dh_auto_install:
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
