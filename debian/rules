@@ -42,15 +42,17 @@ override_dh_auto_clean:
 override_dh_distclean:
 	echo "Skipping distclean"
 override_dh_configure:
+	echo "'\033[0;31m'------- MAKE CONFIG ----------'\033[0m'"
+	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig
 override_dh_auto_install:
 override_dh_auto_build:
 #	mkdir -p debian/build
 #override_dh_auto_build:
 #	rm -rf include/config
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
-	echo "---Make defconfig----"
-	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig #modules 
-	echo "-----Make---"
+	#echo "---Make defconfig----"
+	#$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig #modules 
+	echo "'\033[0;31m'------- MAKE BUILD ----------'\033[0m'"
 	$(MAKE) $(MAKE OPTS)
 #override_dh_auto_install:
 #	echo "-----------MAKE HEADERS InsTALl------"
