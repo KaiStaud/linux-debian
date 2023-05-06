@@ -4,7 +4,10 @@
 #export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 #export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
-
+clean:
+	echo "No clean please"
+distclean:
+	echo "NO distclean"
 override_dh_clean:
 	echo "Skipping clean"
 override_dh_distclean:
