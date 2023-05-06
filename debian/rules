@@ -5,6 +5,9 @@
 #export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
+override_dh_configure:
+	echo "tEst"
+	make stm32mp157a-dk1_defconfig
 %:
 	dh $@  
 
