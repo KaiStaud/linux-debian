@@ -33,14 +33,20 @@ clean:
 	git config --global --add safe.directory $(PWD)
 distclean:
 	echo "NO distclean"
-override_dh_clean:
+override_dh_auto_clean:
 	echo "Skipping clean"
+	mkdir -p debian/build
+	rm -f debian/files
+	rm -rf debian/tmp
+	$(MAKE) $(MAKE_OPTS) clean
 override_dh_distclean:
 	echo "Skipping distclean"
 override_dh_configure:
+	mkdir -p debian/build
 	echo "tEst"
 	make stm32mp157a-dk1_defconfig
 override_dh_auto_build:
+	mkdir -p debian/build
 	$(MAKE) $(MAKE_OPTS)  
 override_dh_auto_install:
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
