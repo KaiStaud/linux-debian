@@ -28,6 +28,7 @@ SRCARCH:=$(ARCH)
 MAKE_OPTS= ARCH=$(ARCH) KERNELRELEASE=$(REL) LOADADDR=0x800800 INSTALL_MOD_PATH=$(MOD_PATH) INSTALL_HDR_PATH=$(HDR_PATH) INSTALL_PATH=$(KERNEL_PATH) INSTALL_DTBS_PATH=$(DTBS_PATH) O=$(BUILD_DIR)
 GREEN='\033[0;32m'
 NC='\033[0m'
+RED='\033[0;31m'
 
 clean:
 	echo "No clean please"
@@ -51,13 +52,13 @@ override_dh_auto_build:
 #override_dh_auto_build:
 #	rm -rf include/config
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
-	printf "${RED}-------- MAKE CONFIG ----------${NC}\n"
+	printf "${RED}MAKE CONFIG ${NC}\n"
 	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig 
 	$(MAKE) stm32mp157a-dk1_defconfig
-	printf "${RED}-------- MAKE BUILD -----------${NC}\n"
+	printf "${RED} MAKE BUILD ${NC}\n"
 	$(MAKE) $(MAKE OPTS)
 #override_dh_auto_install:
-	printf "${RED}-------- MAKE HEADERS -----------${NC}\n"
+	printf "${RED} MAKE HEADERS ${NC}\n"
 	$(MAKE) $(MAKE_OPTS) headers_install
 #	echo "Build kernel header package"
 	rm -f "$(TMP_DIR)/lib/modules/$(REL)/build" "$(TMP_DIR)/lib/modules/$(REL)/source"
@@ -81,5 +82,5 @@ override_dh_auto_build:
 #	dh_auto_install -- prefix=/usr
 
 override_dh_install:
-	printf "${RED}-------- MAKE INSTALL -----------${NC}\n"
+	printf "${RED} MAKE INSTALL ${NC}\n"
 #	dh_install --list-missing -X.pyc -X.pyo
