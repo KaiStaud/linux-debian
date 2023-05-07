@@ -59,7 +59,9 @@ override_dh_auto_build:
 	$(MAKE) $(MAKE OPTS)
 #override_dh_auto_install:
 	printf "${RED} MAKE HEADERS ${NC}\n"
-	$(MAKE) $(MAKE_OPTS) modules_install headers_install
+	$(MAKE) $(MAKE_OPTS) modules
+	$(MAKE) $(MAKE_OPTS) headers
+	$(MAKE) $(MAKE_OPTS) headers_install
 #	echo "Build kernel header package"
 	rm -f "$(TMP_DIR)/lib/modules/$(REL)/build" "$(TMP_DIR)/lib/modules/$(REL)/source"
 	find . -name Makefile\* -o -name Kconfig\* -o -name \*.pl > $(DEB_DIR)/hdrsrcfiles
