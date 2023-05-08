@@ -56,7 +56,7 @@ override_dh_auto_build:
 	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig 
 	$(MAKE) stm32mp157a-dk1_defconfig
 	printf "${RED} MAKE BUILD ${NC}\n"
-	$(MAKE) $(MAKE OPTS) all modules headers
+	$(MAKE) $(MAKE_OPTS) all modules headers
 	find . -name modules.order
 #override_dh_auto_install:
 	printf "${RED} MAKE HEADERS ${NC}\n"
