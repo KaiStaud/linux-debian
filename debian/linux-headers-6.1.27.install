@@ -1,2 +1,2 @@
-./lib/modules/*/build
-./usr/src/*
+./tmp/lib/modules/*/build
+./tmp/usr/src/*

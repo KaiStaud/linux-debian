@@ -1,4 +1,4 @@
-./boot/*
-./lib/modules/*/modules.*
-./lib/modules/*/kernel/*
-./usr/lib/*
+./build/arch/arm/boot/*
+./tmp/lib/modules/*/modules.*
+./tmp/lib/modules/*/kernel/*
+./tmp/usr/lib/*
