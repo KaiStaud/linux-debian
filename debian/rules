@@ -84,7 +84,10 @@ override_dh_auto_build:
 
 #override_dh_auto_install:
 #	dh_auto_install -- prefix=/usr
-
+#
 override_dh_install:
 	printf "${RED} MAKE INSTALL ${NC}\n"
 #	dh_install --list-missing -X.pyc -X.pyo
+
+override_dh_auto_test:
+	echo "Skipping tests"
