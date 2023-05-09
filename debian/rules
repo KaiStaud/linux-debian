@@ -54,7 +54,6 @@ override_dh_auto_build:
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
 	printf "${RED}MAKE CONFIG ${NC}\n"
 	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig 
-	$(MAKE) stm32mp157a-dk1_defconfig
 	printf "${RED} MAKE BUILD ${NC}\n"
 	$(MAKE) $(MAKE_OPTS) all modules headers
 	find . -name modules.order
