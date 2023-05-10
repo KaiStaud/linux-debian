@@ -1,2 +1,2 @@
-zImage /boot
-stm32mp157a-dk1.dtb /boot
+#zImage /boot
+#stm32mp157a-dk1.dtb /boot

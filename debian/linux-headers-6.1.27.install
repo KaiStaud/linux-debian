@@ -1,2 +1,2 @@
-./lib/modules/*/build
-./usr/src/*
+./debian/tmp/lib/modules/*/build  
+./debian/tmp/usr/src/*  

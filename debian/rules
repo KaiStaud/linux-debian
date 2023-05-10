@@ -31,8 +31,9 @@ NC='\033[0m'
 RED='\033[0;31m'
 
 clean:
-	echo "No clean please"
-	echo "Work-Dir=$(PWD)"
+	printf "${RED} Removing build directories\n${NC}"
+	rm -rf debian/{build,tmp,linux-headers-6.1.27,linux-image-6.1.27,linux-libc-dev-6.1.27}
+	rm -rf debian/linux-stm32
 	git config --global --add safe.directory $(PWD)
 distclean:
 	echo "NO distclean"
@@ -48,19 +49,14 @@ override_dh_configure:
 	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig
 override_dh_auto_install:
 override_dh_auto_build:
-#	mkdir -p debian/build
-#override_dh_auto_build:
-#	rm -rf include/config
 	mkdir -p $(MOD_PATH) $(FW_PATH) $(HDR_PATH) $(KERNEL_PATH) $(DTBS_PATH)
 	printf "${RED}MAKE CONFIG ${NC}\n"
 	$(MAKE) $(MAKE_OPTS) stm32mp157a-dk1_defconfig 
 	printf "${RED} MAKE BUILD ${NC}\n"
 	$(MAKE) $(MAKE_OPTS) all modules headers
 	find . -name modules.order
-#override_dh_auto_install:
+override_dh_auto_install:
 	printf "${RED} MAKE HEADERS ${NC}\n"
-#	$(MAKE) $(MAKE_OPTS) modules
-#	$(MAKE) $(MAKE_OPTS) modules headers
 	$(MAKE) $(MAKE_OPTS) headers_install
 	$(MAKE) $(MAKE_OPTS) modules_install
 #	echo "Build kernel header package"
@@ -85,8 +81,8 @@ override_dh_auto_build:
 #override_dh_auto_install:
 #	dh_auto_install -- prefix=/usr
 #
-override_dh_install:
-	printf "${RED} MAKE INSTALL ${NC}\n"
+#override_dh_install:
+#	printf "${RED} MAKE INSTALL ${NC}\n"
 #	dh_install --list-missing -X.pyc -X.pyo
 
 override_dh_auto_test:
