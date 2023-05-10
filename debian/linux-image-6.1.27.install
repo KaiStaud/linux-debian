@@ -1,4 +1,4 @@
-./debian/build/arch/arm/boot/*
+./debian/build/arch/arm/boot/* /boot
 ./debian/tmp/lib/modules/*/modules.*
 ./debian/tmp/lib/modules/*/kernel/*
 #./debian/tmp/usr/lib/* 
