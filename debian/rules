@@ -5,7 +5,7 @@
 #export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 PWD:=$(shell pwd)
-REL:=5.10.178
+REL:=6.1.27
 
 DEB_DIR:=$(PWD)/debian
 TMP_DIR:=$(DEB_DIR)/tmp

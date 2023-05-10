@@ -1,5 +1,5 @@
 # Automatically added by dh_installmodules/13.3.4
-if [ -e /boot/System.map-5.10.178 ]; then
-	depmod -a -F /boot/System.map-5.10.178 5.10.178 || true
+if [ -e /boot/System.map-6.1.27 ]; then
+	depmod -a -F /boot/System.map-6.1.27 6.1.27 || true
 fi
 # End automatically added section
