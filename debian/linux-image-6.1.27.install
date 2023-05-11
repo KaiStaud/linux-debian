@@ -1,4 +1,5 @@
-./debian/build/arch/arm/boot/* /boot
+./debian/build/arch/arm/boot/zImage /boot
+./debian/build/arch/arm/boot/dts/stm32mp157a-dk1.dtb /boot
 ./debian/tmp/lib/modules/*/modules.*
 ./debian/tmp/lib/modules/*/kernel/*
 #./debian/tmp/usr/lib/* 
